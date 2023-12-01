@@ -3,10 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
+import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
 
 class Main {
@@ -17,22 +14,16 @@ class Main {
 
     public static void aufgabe1() throws FileNotFoundException, IOException{
         File f = new File("./input.txt");
-
-            try (BufferedReader b = new BufferedReader(new FileReader(f))) {
-                
+            try (BufferedReader b = new BufferedReader(new FileReader(f))) {       
                 String readLine = "";
                 int sum = 0;
-               
-                
                 while((readLine = b.readLine()) != null){ // String line != null
-                    
                     char first = 0;
                     char following = 0;
                     int foundInt = 0;
                     String number = "";
                     int linecount = 0;
                     for (int charcount = 0; charcount < readLine.length(); charcount++){ // Iteration über alle Chars
-                        
                         char c = readLine.charAt(charcount);
                         if (Character.isDigit(c)){
                             if (foundInt == 0){
@@ -53,14 +44,11 @@ class Main {
                     System.out.println("First: " + first);
                     System.out.println("Following: " + following);
                     System.out.println("Linecount: " + linecount);
-                    System.out.println("Sum: " + sum);
-                    
-                    
+                    System.out.println("Sum: " + sum); 
                 }
-                
             }
-
     }
+
     public static void aufgabe2() throws IOException{
         String readLine = "";
         File f = new File("./input.txt");
@@ -72,7 +60,6 @@ class Main {
             int first = 0;
             int following = 0;
             while (m.find()) {
-                String match = m.group(1);
                 if (countM == 0){
                     first = translate(m.group(1));
                     following = first;
@@ -81,19 +68,13 @@ class Main {
                 }
                 countM ++;
                 System.out.println(first + ", " + following);
-                
-
-                
             }
-        
-            sum = sum + (first*10) + following; 
-            
-            
-            
+            sum = sum + (first*10) + following;    
         }
         System.out.println(sum);
-        
+        b.close();    
     }
+
     public static int translate(String input){
         if (isNumeric(input)){
             int i = Integer.parseInt(input);

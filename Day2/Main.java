@@ -7,6 +7,8 @@ import java.io.IOException;
 class Main {
     public static void main(String[] args) throws IOException{
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        
+        /*
         int gameID = Integer.parseInt(null);
         int gameSet; // für die Iliteration
         int red = 0;
@@ -18,7 +20,7 @@ class Main {
         int sum = 0;
         
         spliten();
-
+        */
  
     }
 
@@ -32,6 +34,11 @@ class Main {
             System.out.println(readLine);
             System.out.println(firstSplit[0]);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Main []";
     }
 
 

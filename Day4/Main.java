@@ -33,7 +33,8 @@ class Main {
          * REGEX: (vereinfacht) (\d*)\s* --> Eine Group sind die Zahlen, die gecaptured "(Alles in der Klammer ist eine Gruppe)" werden sollen. 
          * Alles in der while-Schleife verarbeitet eine Zeile der "input.txt"
          */
-        while((readLine = b.readLine()) != null){
+        //BEGIN OF WHILE-LOOP
+         while((readLine = b.readLine()) != null){
             Matcher m = Pattern.compile("Card\\s*\\d*\\:\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*\\|\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*(\\d*)\\s*").matcher(readLine);
             
             //Insert die ersten 10 Groups in "winning numbers" und die darauffolgenden 25 in "numbers"
@@ -70,6 +71,9 @@ class Main {
             potenz = -1;
             
         }
+        //END OF WHILE-LOOP
+        
+        //Lösung für Teilaufgabe 1
         System.out.println("Summe aller Karten: " + sum);
         
         //Methode für Aufgabe 2: aufgabe2(List<Integer> anzahlDerMatches)
@@ -110,7 +114,8 @@ class Main {
         for (int index = 0; index < cardSet.size(); index++){
             sum = sum + cardSet.get(index);
         }
-
+        
+        //Lösung für Teilaufgabe 2
         System.out.println("Es sind insgesamt " + sum + " Karten." );
 
     }

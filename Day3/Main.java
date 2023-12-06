@@ -3,9 +3,37 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 class Main {
+    public static String[][] zeichen = new String[145][145];
+
+
+    
     public static void main(String[] args) throws IOException {
+        File f = new File("./input.txt");
+        BufferedReader b = new BufferedReader(new FileReader(f));
+        String readLine = "";
+        String buffer = ""; 
+        
+        for(int j = 0; (readLine = b.readLine()) != null; j++ ){
+            for(int i = 0; i < readLine.length(); i++){
+                buffer = "" + readLine.charAt(i);
+                zeichen[i][j] = buffer;
+                System.out.println(buffer);
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* 
         String lastString = null;
         String prevprevString = null;
         String prevString = null;
@@ -39,6 +67,7 @@ class Main {
             }
             
         }
+        */
 
     }
 

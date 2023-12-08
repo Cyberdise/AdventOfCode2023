@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 class Main {
     public List<Hand> winningList; 
     
-    public Card {
+    public static class Card {
         private String value;
 
         public Card(String value) {
@@ -19,7 +19,7 @@ class Main {
         }
     }
 
-    public Hand {
+    public static class Hand {
         public int type;
         public int bid;
 
@@ -28,8 +28,19 @@ class Main {
             this.bid = Integer.parseInt(bid);
         }
         public int getType(List<Card> listCards) {
-            return 2;
+            return 1;
         }
+    }
+
+    public static class MatchGroup{
+        public String value;
+        public int count;
+
+        public MatchGroup(String value){
+
+        }
+        
+
     }
 
     public static List<Hand> sortType(List<Hand> listHands){
@@ -55,7 +66,7 @@ class Main {
         List<Hand> listHand = new ArrayList<Hand>(); 
         String bidCaputure = "";
         String capture = "";
-        String buffer = "";
+        
         while((readLine = b.readLine()) != null){ //readLine 
             Matcher m = Pattern.compile("([A-Z0-9]*)\\s*(\\d*)\\s*").matcher(readLine);
             List<Card> cardSet = new ArrayList<Card>();
@@ -64,6 +75,7 @@ class Main {
                 bidCaputure = m.group(2);
             }
             for(int i = 0; i < 5; i++){
+                String buffer = "";
                 buffer = "A"; //capture muss noch in 5 geteilt werden ["A", "2", "3", "4", "5"]
                 Card c = new Card(buffer);
                 cardSet.add(c);
@@ -82,7 +94,7 @@ class Main {
 
 
     public static void main(String[] args) throws IOException{
-        Main.berechneAufgabeA(sortType(initCards()));
+        berechneAufgabeA(sortType(initCards()));
 
     }
 }

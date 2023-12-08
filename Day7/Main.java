@@ -76,7 +76,8 @@ class Main {
             }
             for(int i = 0; i < 5; i++){
                 String buffer = "";
-                buffer = "A"; //capture muss noch in 5 geteilt werden ["A", "2", "3", "4", "5"]
+                char ch = capture.charAt(i);
+                buffer = "" + ch;
                 Card c = new Card(buffer);
                 cardSet.add(c);
             }
@@ -94,7 +95,7 @@ class Main {
 
 
     public static void main(String[] args) throws IOException{
-        berechneAufgabeA(sortType(initCards()));
-
+        //berechneAufgabeA(sortType(initCards()));
+        System.out.println(initCards());
     }
 }

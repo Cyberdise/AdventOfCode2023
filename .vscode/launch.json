@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "src.Main",
+            "projectName": "AdventOfCode2023_d2d974ed"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "Main",
             "projectName": "AdventOfCode2023_d2d974ed"
         },

@@ -29,11 +29,13 @@ class Beam {
     public int yCord = 0;
     public String direction = "rechts";
     public boolean dead = false;
-    
-    public Beam(int yCord, int xCord, String direction){
+    boolean firstSpot = false;
+
+    public Beam(int yCord, int xCord, String direction, boolean firstSpot){
         this.yCord = yCord;
         this.xCord = xCord;
         this.direction = direction;
+        this.firstSpot = firstSpot;
     }
 
     public Beam interact(Tile tile, Beam beam) {
@@ -63,13 +65,15 @@ class Beam {
         else if(object.type.equals("|")){
             if (beam.direction.equals("rechts")) {
                 beam.direction = "oben";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten");
+                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
                 tile.energize();
+                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
                 return newBeam;
             }else if (beam.direction.equals("links")) {
                 beam.direction = "oben";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten");
+                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
                 tile.energize();
+                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
                 return newBeam;
             }else if(beam.direction.equals("oben")){
                 tile.energize();
@@ -92,11 +96,11 @@ class Beam {
                 tile.energize();
                 return null;
             }else if(beam.direction.equals("oben")){
-                beam.direction = "rechts";
+                beam.direction = "links";
                 tile.energize();
                 return null;
             }else if(beam.direction.equals("unten")){
-                beam.direction = "links";
+                beam.direction = "rechts";
                 tile.energize();
                 return null;
             }else{
@@ -113,14 +117,16 @@ class Beam {
                 return null;
             }else if(beam.direction.equals("oben")){
                 beam.direction = "rechts";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links");
+                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
                 tile.energize();
+                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
                 return newBeam;
             }else if(beam.direction.equals("unten")){
                 beam.direction = "rechts";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links");
+                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
                 tile.energize();
-                return newBeam;
+                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                return newBeam;  
             }else{
                 tile.energize();
                 return null; 
@@ -170,32 +176,47 @@ class Tile {
 }
 
 class Map {
-    List<Tile> zeile = new ArrayList<Tile>();
-    List<List<Tile>> map = new ArrayList<List<Tile>>();
-    List<Beam> beams = new ArrayList<Beam>();
     
+    List<List<Tile>> map = new ArrayList<List<Tile>>();
+    List<Beam> beams = new ArrayList<Beam>(); 
     public Map(String filename) throws IOException { 
-        File file = new File("./%s.txt", filename);
+        String filePath = String.format("./%s.txt", filename);
+        File file = new File(filePath);
         BufferedReader b = new BufferedReader(new FileReader(file));
         String readLine;
         String buffer = "";
+        boolean firstTile = true;
         while((readLine = b.readLine()) != null) {
+            // int zeilenCounter = 0;
+            List<Tile> zeile = new ArrayList<Tile>();
             for(int indexChar = 0; indexChar < readLine.length(); indexChar++) {
                 buffer = "" + readLine.charAt(indexChar);
                 Object object = new Object(buffer);
                 Tile tile = new Tile(object);
+                if (firstTile){
+                    tile.energize();
+                    firstTile = false;
+                }
                 zeile.add(tile);
+                // zeilenCounter++;
             }
             map.add(zeile);
         }    
+
+        Beam firstBeam = new Beam(0, 0, "rechts", true);
+        beams.add(firstBeam);
     }
 
     public int countEnergizedTiles(){
         int count = 0;
         for(int zeile = 0; zeile < map.size(); zeile++) {
+            System.out.println();
             for(int tile = 0; tile < map.get(zeile).size(); tile++){
                 if(map.get(zeile).get(tile).energized){
                     count++;
+                    System.out.print("#");
+                }else {
+                    System.out.print(".");
                 }
             }
         }
@@ -203,7 +224,7 @@ class Map {
     }
 
     public void addNewBeam(int yCord, int xCord, String direction){
-        Beam beam = new Beam(yCord, xCord, direction);
+        Beam beam = new Beam(yCord, xCord, direction, false);
         beams.add(beam);
     }
 
@@ -212,7 +233,12 @@ class Map {
     public void moveBeam(Beam beam) {
         if(beam.direction.equals("rechts")){
             try {
-                beam.xCord++;
+                if(beam.firstSpot){
+                    beam.firstSpot = false;
+                }else{
+                    beam.xCord++;
+                }
+
                 Tile tile = map.get(beam.yCord).get(beam.xCord);
                 Beam newBeam = beam.interact(tile, beam);
                 if (newBeam != null) {
@@ -224,7 +250,11 @@ class Map {
             
         }else if(beam.direction.equals("links")){
             try {
-                beam.xCord--;
+                if(beam.firstSpot){
+                    beam.firstSpot = false;
+                }else{
+                    beam.xCord--;
+                }
                 Tile tile = map.get(beam.yCord).get(beam.xCord);
                 Beam newBeam = beam.interact(tile, beam);
                 if (newBeam != null) {
@@ -236,7 +266,11 @@ class Map {
             
         }else if(beam.direction.equals("oben")){
             try {
-                beam.yCord++;
+                if(beam.firstSpot){
+                    beam.firstSpot = false;
+                }else{
+                    beam.yCord--;
+                }
                 Tile tile = map.get(beam.yCord).get(beam.xCord);
                 Beam newBeam = beam.interact(tile, beam);
                 if (newBeam != null) {
@@ -248,7 +282,11 @@ class Map {
             
         }else if(beam.direction.equals("unten")){
             try {
-               beam.yCord--;
+                if(beam.firstSpot){
+                    beam.firstSpot = false;
+                }else{
+                    beam.yCord++;
+                }
                 Tile tile = map.get(beam.yCord).get(beam.xCord);
                 Beam newBeam = beam.interact(tile, beam);
                 if (newBeam != null) {
@@ -261,21 +299,35 @@ class Map {
     }
 
     public void moveBeams(){
+        
         for(int i = 0; i < beams.size(); i++){
             Beam beam = beams.get(i);
+            System.out.println(beam.dead);
             while(beam.dead != true){
+                
                 moveBeam(beam);
             }
+            System.out.println(this.countEnergizedTiles());
+            System.out.println();
+            /*
+            System.out.println("Print: DeadList"); 
+            for(int j = 0; j < beams.size(); j++){
+                Beam beama = beams.get(j);
+                System.out.println(String.format("Beam: %d, Dead?: %s", j, beama.dead)); 
+            }
+            */
+            // System.out.println(String.format("Die X-Koordinate ist: %s | Die Y-Koordinate ist: %s", beam.xCord, beam.yCord));
         }
     }
 }
 
 class Main { 
     public static void main(String[] args) throws IOException{
-        Map map = new Map("test_input");
+        Map map = new Map("input");
         System.out.println("a");
-        System.out.println(map.map);
+        // System.out.println(map.map);
         map.moveBeams();
         System.out.println(map.countEnergizedTiles());
+        
     }
 }

@@ -65,15 +65,25 @@ class Beam {
         else if(object.type.equals("|")){
             if (beam.direction.equals("rechts")) {
                 beam.direction = "oben";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
+                Beam newBeam = null;
+                if(tile.activated != true) {
+                    newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
+                    System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                    tile.activated = true;
+                }
                 tile.energize();
-                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                
                 return newBeam;
             }else if (beam.direction.equals("links")) {
                 beam.direction = "oben";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
+                Beam newBeam = null;
+                if(tile.activated != true) {
+                    newBeam = new Beam(beam.yCord, beam.xCord, "unten", false);
+                    System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                    tile.activated = true;
+                }
                 tile.energize();
-                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                
                 return newBeam;
             }else if(beam.direction.equals("oben")){
                 tile.energize();
@@ -117,17 +127,27 @@ class Beam {
                 return null;
             }else if(beam.direction.equals("oben")){
                 beam.direction = "rechts";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
+                Beam newBeam = null;
+                if(tile.activated != true) {
+                    newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
+                    System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                    tile.activated = true;
                 tile.energize();
-                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                
                 return newBeam;
+                }
             }else if(beam.direction.equals("unten")){
                 beam.direction = "rechts";
-                Beam newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
+                Beam newBeam = null;
+                if (tile.activated != true) {
+                    newBeam = new Beam(beam.yCord, beam.xCord, "links", false);
+                    System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
+                    tile.activated = true;
+                }
                 tile.energize();
-                System.out.println(String.format("Hurra, eine neue Geburt bei X: %d, Y: %d", newBeam.xCord, newBeam.yCord));
                 return newBeam;  
-            }else{
+            }
+            else{
                 tile.energize();
                 return null; 
             }
@@ -137,8 +157,9 @@ class Beam {
                 return null;
         }else{
             tile.energize();
-                return null;
+            return null;
         }
+        return null;
     }
 }
 
@@ -158,6 +179,7 @@ class Object {
 class Tile {
     public Object object;
     public boolean energized = false;
+    public boolean activated = false;
     
     public Tile(Object object) {
         this.object = object;
@@ -302,7 +324,6 @@ class Map {
         
         for(int i = 0; i < beams.size(); i++){
             Beam beam = beams.get(i);
-            System.out.println(beam.dead);
             while(beam.dead != true){
                 
                 moveBeam(beam);

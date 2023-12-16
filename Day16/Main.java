@@ -349,6 +349,6 @@ class Main {
         // System.out.println(map.map);
         map.moveBeams();
         System.out.println(map.countEnergizedTiles());
-        
+        System.out.println("Java print Befehl");
     }
 }

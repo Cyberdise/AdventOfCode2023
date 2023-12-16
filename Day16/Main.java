@@ -275,5 +275,7 @@ class Main {
         Map map = new Map("test_input");
         System.out.println("a");
         System.out.println(map.map);
+        map.moveBeams();
+        map.countEnergizedTiles();
     }
 }

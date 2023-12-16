@@ -276,6 +276,6 @@ class Main {
         System.out.println("a");
         System.out.println(map.map);
         map.moveBeams();
-        map.countEnergizedTiles();
+        System.out.println(map.countEnergizedTiles());
     }
 }

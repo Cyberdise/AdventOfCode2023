@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Map",
+            "request": "launch",
+            "mainClass": "Map",
+            "projectName": "AdventOfCode2023_d2d974ed"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "src.Main",

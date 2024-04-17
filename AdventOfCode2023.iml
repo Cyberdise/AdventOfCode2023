@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Day1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day10" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day11" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day12" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day13" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day14" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day15" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day16" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day17" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day18" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day19" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day20" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day21" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day22" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day23" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day24" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day25" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day4" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day5" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day6" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day7" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day8" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Day9" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

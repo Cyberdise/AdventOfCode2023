@@ -9,22 +9,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Main {
-    public static void main(String[] args) throws IOException{
-        
-        //int gameID = Integer.parseInt(null);
+    public static void main(String[] args) throws IOException {
+
+        // int gameID = Integer.parseInt(null);
         int gameSet; // für die Iliteration
         int red = 0;
         int blue = 0;
         int green = 0;
-        
+
         int sum = 0;
-        
+
         spliten();
 
- 
     }
 
-    public static void spliten() throws IOException{
+    public static void spliten() throws IOException {
         final int possibleRed = 12;
         final int possibleBlue = 14;
         final int possibleGreen = 13;
@@ -37,28 +36,29 @@ class Main {
         int gameID = 0;
         int sum = 0;
         double SUM = 0;
-        while ((readLine = b.readLine()) != null){
+
+        while ((readLine = b.readLine()) != null) {
             gameID++;
             Matcher redMatcher = Pattern.compile("=?(\\d*)(\\sred)").matcher(readLine);
             Matcher greenMatcher = Pattern.compile("=?(\\d*)(\\sgreen)").matcher(readLine);
             Matcher blueMatcher = Pattern.compile("=?(\\d*)(\\sblue)").matcher(readLine);
-            //Matcher gameMatcher = Pattern.compile("=?(Game\\s)(\\d*)").matcher(readLine);
-            
-            while(redMatcher.find()){
+            // Matcher gameMatcher = Pattern.compile("=?(Game\\s)(\\d*)").matcher(readLine);
+
+            while (redMatcher.find()) {
                 int buffer = Integer.parseInt(redMatcher.group(1));
-                if (highRed < buffer){
+                if (highRed < buffer) {
                     highRed = Integer.parseInt(redMatcher.group(1));
                 }
             }
-            while(greenMatcher.find()){
+            while (greenMatcher.find()) {
                 int buffer = Integer.parseInt(greenMatcher.group(1));
-                if (highGreen < buffer){
+                if (highGreen < buffer) {
                     highGreen = buffer;
                 }
             }
-            while(blueMatcher.find()){
+            while (blueMatcher.find()) {
                 int buffer = Integer.parseInt(blueMatcher.group(1));
-                if (highBlue < buffer){
+                if (highBlue < buffer) {
                     highBlue = Integer.parseInt(blueMatcher.group(1));
                 }
             }
@@ -66,21 +66,19 @@ class Main {
             System.out.println("Green: " + highGreen);
             System.out.println("Blue: " + highBlue);
             System.out.println("Red: " + highRed);
-            
-            System.out.println("GameID: "+ gameID);
-            /* 
-            if(highBlue <= possibleBlue && highGreen <= possibleGreen && highRed <= possibleRed){
-                System.out.println("Vorsumme: "+ sum);
-                sum = sum + gameID;
-                System.out.println("Summe: "+ sum);
-            }
-            */
-            
-            sum = sum + highBlue*highGreen*highRed;
-            
-            
-            
-            
+
+            System.out.println("GameID: " + gameID);
+            /*
+             * if(highBlue <= possibleBlue && highGreen <= possibleGreen && highRed <=
+             * possibleRed){
+             * System.out.println("Vorsumme: "+ sum);
+             * sum = sum + gameID;
+             * System.out.println("Summe: "+ sum);
+             * }
+             */
+
+            sum = sum + highBlue * highGreen * highRed;
+
             highBlue = 0;
             highGreen = 0;
             highRed = 0;

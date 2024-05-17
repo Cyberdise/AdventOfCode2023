@@ -62,6 +62,14 @@ class Main {
 
     }
 
+    public void aufgabe1() {
+
+    }
+
+    public void aufgabe2() {
+
+    }
+
     public static boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);

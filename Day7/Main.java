@@ -91,23 +91,19 @@ class Main {
                 }
 
                 if (häufig.count == 5) {
-                    return 5;
+                    return 7;
                 } else if (häufig.count == 4) {
-                    return 4;
+                    return 6;
+                } else if (häufig.count == 3 && zweithäufig.count == 2) {
+                    return 5;
                 } else if (häufig.count == 3) {
-                    return 3;
+                    return 4;
                 } else if (häufig.count == 2 && zweithäufig.count == 2) {
-                    return 2;
+                    return 3;
                 } else if (häufig.count == 2) {
-                    return 1;
+                    return 2;
                 } else {
-                    int highCard = 0;
-                    for (int j = 0; j < matchGroups.size(); j++) {
-                        if (highCard < matchGroups.get(j).value) {
-                            highCard = matchGroups.get(j).value;
-                        }
-                    }
-                    return -highCard;
+                    return 1;
                 }
 
             }

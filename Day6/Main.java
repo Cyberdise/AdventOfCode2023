@@ -19,13 +19,8 @@ class Main {
 
         berechneAufgabeB(Extratime, Extradistance);
         // distanceReached = timeWait * timeLeft;
-    }
-
-    public static void berechneAufgabeB(long time, long distance) {
-
-        long ergebnis = berechneCount(time, distance);
-
-        System.out.println(ergebnis);
+        leseAufgabeA();
+        berechneAufgabeA(time, distance);
     }
 
     public static void berechneAufgabeA(List<Integer> time, List<Integer> distance) {
@@ -33,7 +28,7 @@ class Main {
         for (int i = 0; i < time.size(); i++) {
             produkt = produkt * berechneCount(time.get(i), distance.get(i));
         }
-        System.out.println(produkt);
+        System.out.println("Produkt:" + produkt);
     }
 
     public static void leseAufgabeB() throws NumberFormatException, IOException {
@@ -58,12 +53,16 @@ class Main {
                     Extradistance = Long.parseLong(buffer);
                 }
             }
-            System.out.println("Time:");
-            System.out.println(Extratime);
-            System.out.println("Extradistance: ");
-            System.out.println(Extradistance);
+            // System.out.println("Time:");
+            // System.out.println(Extratime);
+            // System.out.println("Extradistance: ");
+            // System.out.println(Extradistance);
 
         }
+    }
+
+    public static void berechneAufgabeB(long time, long distance) {
+        System.out.println("Aufgabe B: " + berechneCount(time, distance));
     }
 
     public static void leseAufgabeA() throws NumberFormatException, IOException {
@@ -97,8 +96,10 @@ class Main {
         long countHighscore = 0;
 
         for (timeWait = 0; timeWait <= time; timeWait++) {
+
             timeLeft = (long) time - timeWait;
             distanceReached = (long) timeWait * timeLeft;
+
             if (distanceReached >= distance) {
                 countHighscore++;
             } else if (distanceReached < distance) {
@@ -106,7 +107,7 @@ class Main {
             }
             // System.out.println("Warte: " + timeWait);
         }
-        System.out.println(countHighscore);
+        // System.out.println(countHighscore);
         return countHighscore;
     }
 
